@@ -19,12 +19,12 @@ namespace Robot.Tests
         public void WinAtClicking()
         {
             driver.Navigate().GoToUrl("http://orteil.dashnet.org/cookieclicker/");
-            System.Threading.Thread.Sleep(5000);
+            System.Threading.Thread.Sleep(1000);
             Stopwatch timer = new Stopwatch();
             timer.Start();
 
             var cookie = driver.FindElement(By.Id("bigCookie"));
-            while (timer.Elapsed < TimeSpan.FromDays(5))
+            while (timer.Elapsed < TimeSpan.FromMinutes(5))
             {
                 try
                 {
@@ -43,31 +43,46 @@ namespace Robot.Tests
                     cookie.Click();
                 }
             }
-            System.Threading.Thread.Sleep(5000);
+            System.Threading.Thread.Sleep(1000);
             var score = driver.FindElement(By.Id("cookies")).Text;
             Console.WriteLine(score);
         }
 
         [Test]
-        public void WinBetterAtTyping()
+        public void WinBetterAtClicking()
         {
-            driver.Navigate().GoToUrl("https://www.typingtest.com/test.html?minutes=1&textfile=oz.txt");
-            System.Threading.Thread.Sleep(5000);
-            var typeHere = driver.FindElement(By.Id("test-edit-area"));
-            var typeThese = driver.FindElements(By.CssSelector(".test-text-area-font > span"));
-            var typeThis = new StringBuilder();
-            foreach (var type in typeThese)
-            {
-                typeThis.Append(type.Text + " ");
-            }
+            driver.Navigate().GoToUrl("http://orteil.dashnet.org/cookieclicker/");
+            System.Threading.Thread.Sleep(1000);
             Stopwatch timer = new Stopwatch();
             timer.Start();
-            while (timer.Elapsed < TimeSpan.FromMinutes(1))
+
+            var cookie = driver.FindElement(By.Id("bigCookie"));
+            while (timer.Elapsed < TimeSpan.FromMinutes(5))
             {
-                typeHere.SendKeys(typeThis.ToString());
+                try
+                {
+                    var upgrades = driver.FindElements(By.CssSelector(".enabled[id^=\"upgrade\"]"));
+                    if (upgrades.Any())
+                    {
+                        upgrades.Last().Click();
+                    }
+                    var products = driver.FindElements(By.CssSelector(".enabled[id^=\"product\"]"));
+                    if (products.Any())
+                    {
+                        products.Last().Click();
+                    }
+                    else
+                    {
+                        cookie.Click();
+                    }
+                }
+                catch (NoSuchElementException)
+                {
+                    cookie.Click();
+                }
             }
-            System.Threading.Thread.Sleep(5000);
-            var score = driver.FindElement(By.ClassName("amount")).Text;
+            System.Threading.Thread.Sleep(1000);
+            var score = driver.FindElement(By.Id("cookies")).Text;
             Console.WriteLine(score);
         }
 
