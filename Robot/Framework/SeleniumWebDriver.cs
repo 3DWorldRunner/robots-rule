@@ -10,7 +10,7 @@ using OpenQA.Selenium.Chrome;
 
 namespace Robot.Framework
 {
-    public class WebDriver
+    public class SeleniumWebDriver
     {
         public IWebDriver Driver
         {
