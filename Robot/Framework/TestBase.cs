@@ -9,7 +9,7 @@ using OpenQA.Selenium.Chrome;
 
 namespace Robot.Framework
 {
-    public class TestBase : WebDriver
+    public class TestBase : SeleniumWebDriver
     {
         public TestBase()
         {
