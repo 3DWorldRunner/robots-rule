@@ -9,7 +9,7 @@ using OpenQA.Selenium.Chrome;
 
 namespace Robot.Framework
 {
-    public class TestBase : Driver
+    public class TestBase : WebDriver
     {
         public TestBase()
         {
@@ -24,13 +24,14 @@ namespace Robot.Framework
         [SetUp]
         public void TestSetup()
         {
-            driver.Navigate().GoToUrl("https://www.google.com");
+            Driver.Navigate().GoToUrl("https://www.google.com");
         }
 
         [TearDown]
         public void TestTearDown()
         {
-            driver.Quit();
+            Driver.Quit();
+            Driver = null;
         }
 
         [OneTimeTearDown]

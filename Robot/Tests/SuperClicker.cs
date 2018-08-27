@@ -18,17 +18,17 @@ namespace Robot.Tests
         [Test]
         public void WinAtClicking()
         {
-            driver.Navigate().GoToUrl("http://orteil.dashnet.org/cookieclicker/");
+            Driver.Navigate().GoToUrl("http://orteil.dashnet.org/cookieclicker/");
             System.Threading.Thread.Sleep(1000);
             Stopwatch timer = new Stopwatch();
             timer.Start();
 
-            var cookie = driver.FindElement(By.Id("bigCookie"));
+            var cookie = Driver.FindElement(By.Id("bigCookie"));
             while (timer.Elapsed < TimeSpan.FromMinutes(5))
             {
                 try
                 {
-                    var products = driver.FindElements(By.CssSelector(".enabled[id^=\"product\"]"));
+                    var products = Driver.FindElements(By.CssSelector(".enabled[id^=\"product\"]"));
                     if (products.Any())
                     {
                         products.Last().Click();
@@ -44,29 +44,29 @@ namespace Robot.Tests
                 }
             }
             System.Threading.Thread.Sleep(1000);
-            var score = driver.FindElement(By.Id("cookies")).Text;
+            var score = Driver.FindElement(By.Id("cookies")).Text;
             Console.WriteLine(score);
         }
 
         [Test]
         public void WinBetterAtClicking()
         {
-            driver.Navigate().GoToUrl("http://orteil.dashnet.org/cookieclicker/");
+            Driver.Navigate().GoToUrl("http://orteil.dashnet.org/cookieclicker/");
             System.Threading.Thread.Sleep(1000);
             Stopwatch timer = new Stopwatch();
             timer.Start();
 
-            var cookie = driver.FindElement(By.Id("bigCookie"));
+            var cookie = Driver.FindElement(By.Id("bigCookie"));
             while (timer.Elapsed < TimeSpan.FromMinutes(5))
             {
                 try
                 {
-                    var upgrades = driver.FindElements(By.CssSelector(".enabled[id^=\"upgrade\"]"));
+                    var upgrades = Driver.FindElements(By.CssSelector(".enabled[id^=\"upgrade\"]"));
                     if (upgrades.Any())
                     {
                         upgrades.Last().Click();
                     }
-                    var products = driver.FindElements(By.CssSelector(".enabled[id^=\"product\"]"));
+                    var products = Driver.FindElements(By.CssSelector(".enabled[id^=\"product\"]"));
                     if (products.Any())
                     {
                         products.Last().Click();
@@ -82,7 +82,7 @@ namespace Robot.Tests
                 }
             }
             System.Threading.Thread.Sleep(1000);
-            var score = driver.FindElement(By.Id("cookies")).Text;
+            var score = Driver.FindElement(By.Id("cookies")).Text;
             Console.WriteLine(score);
         }
 

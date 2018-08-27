@@ -18,28 +18,28 @@ namespace Robot.Tests
         [Test]
         public void WinAtTyping()
         {
-            driver.Navigate().GoToUrl("https://www.typingtest.com/test.html?minutes=1&textfile=oz.txt");
+            Driver.Navigate().GoToUrl("https://www.typingtest.com/test.html?minutes=1&textfile=oz.txt");
             System.Threading.Thread.Sleep(5000);
             Stopwatch timer = new Stopwatch();
             timer.Start();
             while (timer.Elapsed < TimeSpan.FromMinutes(1))
             {
-                var typeThis = driver.FindElement(By.ClassName("test-text-area-font-highlighted")).Text + " ";
-                var typeHere = driver.FindElement(By.Id("test-edit-area"));
+                var typeThis = Driver.FindElement(By.ClassName("test-text-area-font-highlighted")).Text + " ";
+                var typeHere = Driver.FindElement(By.Id("test-edit-area"));
                 typeHere.SendKeys(typeThis);
             }
             System.Threading.Thread.Sleep(5000);
-            var score = driver.FindElement(By.ClassName("amount")).Text;
+            var score = Driver.FindElement(By.ClassName("amount")).Text;
             Console.WriteLine(score);
         }
 
         [Test]
         public void WinBetterAtTyping()
         {
-            driver.Navigate().GoToUrl("https://www.typingtest.com/test.html?minutes=1&textfile=oz.txt");
+            Driver.Navigate().GoToUrl("https://www.typingtest.com/test.html?minutes=1&textfile=oz.txt");
             System.Threading.Thread.Sleep(5000);
-            var typeHere = driver.FindElement(By.Id("test-edit-area"));
-            var typeThese = driver.FindElements(By.CssSelector(".test-text-area-font > span"));
+            var typeHere = Driver.FindElement(By.Id("test-edit-area"));
+            var typeThese = Driver.FindElements(By.CssSelector(".test-text-area-font > span"));
             var typeThis = new StringBuilder();
             foreach (var type in typeThese)
             {
@@ -52,7 +52,7 @@ namespace Robot.Tests
                 typeHere.SendKeys(typeThis.ToString());
             }
             System.Threading.Thread.Sleep(5000);
-            var score = driver.FindElement(By.ClassName("amount")).Text;
+            var score = Driver.FindElement(By.ClassName("amount")).Text;
             Console.WriteLine(score);
         }
 
